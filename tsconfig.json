@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.base",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "lib": ["esnext", "dom"],
+    "paths": { "*": ["node_modules/*", "types/*"] },
+    "sourceMap": true
+  },
+  "include": [
+    "airports.ts",
+    "geo.ts",
+    "Tabs.tsx"
+  ]
+}
