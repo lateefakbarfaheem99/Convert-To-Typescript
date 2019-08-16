@@ -7,7 +7,7 @@ import airports from './airports';
  * @param degrees  angle, in degrees
  * @return same angle in radians
  */
-function toRadians(degrees) {
+function toRadians(degrees: number) {
   return (degrees * Math.PI) / 180;
 }
 
@@ -19,7 +19,12 @@ function toRadians(degrees) {
  * @param lon2
  * @return distance in metres
  */
-export function distance(lat1, lon1, lat2, lon2) {
+export function distance(
+  lat1: number,
+  lon1: number,
+  lat2: number,
+  lon2: number,
+) {
   // From http://www.movable-type.co.uk/scripts/latlong.html
   const R = 6371e3; // metres
   const latRadians1 = toRadians(lat1);
@@ -44,7 +49,7 @@ export function distance(lat1, lon1, lat2, lon2) {
  * @param airport2
  * @return distance in metres
  */
-export function airportsDistance(airport1, airport2) {
+export function airportsDistance(airport1: string, airport2: string) {
   const info1 = airports[airport1];
   const info2 = airports[airport2];
   return distance(
@@ -60,7 +65,7 @@ export function airportsDistance(airport1, airport2) {
  * @param kms  kilometers to convert
  * @return distance in degrees for latitude
  */
-export function distToLat(kms) {
+export function distToLat(kms: number) {
   return kms / 111;
 }
 
@@ -70,7 +75,7 @@ export function distToLat(kms) {
  * @param lat  latitude degrees
  * @return distance in degrees for longitude
  */
-export function distToLon(kms, lat) {
+export function distToLon(kms: number, lat: number) {
   return kms / 111 / Math.cos(toRadians(lat));
 }
 
@@ -81,7 +86,7 @@ export function distToLon(kms, lat) {
  * @param lon   longitude of reference point
  * @return objs
  */
-export function sortByDistance(objs, lat, lon) {
+export function sortByDistance(objs: Array<any>, lat: number, lon: number) {
   return objs.sort(
     (
       { latitude: lat1, longitude: lon1 },

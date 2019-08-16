@@ -4,11 +4,13 @@
     "baseUrl": ".",
     "lib": ["esnext", "dom"],
     "paths": { "*": ["node_modules/*", "types/*"] },
-    "sourceMap": true
+    "sourceMap": true,
+    "allowJs": true,
+    "target": "es5",
+    "jsx": "react",
+    "module": "es6",
+    "strictNullChecks": true,
+    "outDir": "./dist/"
   },
-  "include": [
-    "airports.ts",
-    "geo.ts",
-    "Tabs.tsx"
-  ]
+  "include": ["airports.ts", "geo.ts", "Tabs.tsx"]
 }

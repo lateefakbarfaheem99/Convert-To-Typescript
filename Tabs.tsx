@@ -1,37 +1,28 @@
-import React from 'react';
-import _ from 'lodash';
-import shallowCompare from 'react-addons-shallow-compare';
+import * as React from 'react';
+import * as _ from 'lodash';
 import { setPropValue } from 'react-updaters';
 
 /** A set of Bootstrap tabs that you can toggle between for navigation */
-export default class Tabs extends React.Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    return shallowCompare(this, nextProps, nextState);
-  }
-
-  static propTypes = {
-    tabs: React.PropTypes.oneOfType([
-      React.PropTypes.object,
-      React.PropTypes.array,
-    ]).isRequired,
-    value: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.number,
-    ]),
-    onChange: React.PropTypes.func.isRequired,
-  };
-
+type TabsProps = {
+  tabs?: object | Array<any>;
+  value?: string | number;
+  onchange: Function;
+};
+export default class Tabs extends React.PureComponent<TabsProps> {
   render() {
     const { value: activeTab } = this.props;
-    let { tabs } = this.props;
+    const { tabs } = this.props;
 
+    let tabsTemp: Array<any>;
     if (!(tabs instanceof Array)) {
-      tabs = _.map(tabs, (label, value) => ({ label, value }));
+      tabsTemp = _.map(tabs, (label, value) => ({ label, value }));
+    } else {
+      tabsTemp = tabs;
     }
 
     return (
       <ul className="nav nav-tabs" role="navigation">
-        {tabs.map(({ label, value: tab, liClassName, aClassName }) => (
+        {tabsTemp.map(({ label, value: tab, liClassName, aClassName }) => (
           <li
             key={tab}
             className={
